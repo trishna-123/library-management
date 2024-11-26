@@ -2,6 +2,9 @@ package com.hexaware.librarymanagement.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +21,11 @@ public class Publisher {
 	private String name;
 	
 	@OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
+	@JsonIgnore
+	@JsonManagedReference
 	private List<Book> books;
+	
+	public Publisher () {}
 
 	public Publisher(String name, List<Book> books) {
 		super();
@@ -49,6 +56,4 @@ public class Publisher {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
-
-	
 }

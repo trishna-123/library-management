@@ -9,7 +9,5 @@ import com.hexaware.librarymanagement.model.Book;
 public interface BookRepository extends JpaRepository<Book, Long>{
 
 	List<Book> findByName(String bookName);
-	List<Book> findByAuthorName(String authorName);
-	List<Book> findByPublisherName(String publisherName);
 
 }

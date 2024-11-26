@@ -2,10 +2,13 @@ package com.hexaware.librarymanagement.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -18,10 +21,16 @@ public class Book {
 	private Date dateOfPublication;
 	
 	@ManyToOne
+	@JoinColumn(name="author_id", nullable=false)
+	@JsonIgnoreProperties("books")
 	private Author author;
 	
 	@ManyToOne
+	@JoinColumn(name="publisher_id", nullable=false)
+	@JsonIgnoreProperties("books")
 	private Publisher publisher;
+	
+	public Book() {}
 
 	public Book(String name, Date dateOfPublication, Author author, Publisher publisher) {
 		super();
